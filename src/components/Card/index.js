@@ -12,7 +12,14 @@ class Card extends React.Component {
   }
 
   render() {
-    return <div className="card">Card</div>;
+    return (
+      <div className="card">
+        <div className="">Image Container</div>
+        <div className="">Bio section</div>
+        <div className="">Links</div>
+        <div className="">Social Links</div>
+      </div>
+    );
   }
 }
 
