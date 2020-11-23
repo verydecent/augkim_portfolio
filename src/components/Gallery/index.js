@@ -12,7 +12,6 @@ class Gallery extends React.Component {
     client
       .getEntry(this.props.entryId)
       .then((res) => {
-        console.log("=========>", res);
         this.setState({ title: res.fields.title, images: res.fields.images });
       })
       .catch((err) => console.log(err));
