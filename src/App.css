@@ -18,7 +18,7 @@
 /* Card */
 
 .card {
-  width: 375px;
+  width: 420px;
   height: 100%;
   background: #fff;
   padding: 16px;
@@ -56,4 +56,55 @@
   margin-top: 6px;
   font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+/* Gallery */
+
+.gallery {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: auto;
+  background: #fff;
+  border-radius: 5px;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  font-size: 2.4rem;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  margin-top: 12px;
+}
+
+.gallery-image-container {
+  padding: 0 30px 0;
+  height: 100%;
+}
+
+.gallery-image {
+  margin-top: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+  border-radius: 2px;
+}
+
+.gallery-home-button {
+  padding-top: 12px;
+  position: fixed;
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  top: 0;
+  right: 10px;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.gallery-home-button:hover {
+  color: #000;
 }

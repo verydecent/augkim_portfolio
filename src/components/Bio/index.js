@@ -13,7 +13,6 @@ class Bio extends React.Component {
     client
       .getEntry("5VaxQBNFwlnNIaYzfhpiyM")
       .then((res) => {
-        console.log(res);
         this.setState({ bio: res.fields.biography });
       })
       .catch((err) => console.log(err));

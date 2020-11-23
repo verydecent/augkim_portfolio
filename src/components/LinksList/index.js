@@ -25,7 +25,7 @@ class LinksList extends React.Component {
 
   render() {
     const links = this.state.links.map((link, index) => (
-      <Link key={index} to={link}>
+      <Link key={index} to={link.toLowerCase()}>
         {link}
       </Link>
     ));
