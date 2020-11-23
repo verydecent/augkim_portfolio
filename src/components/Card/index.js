@@ -1,5 +1,5 @@
 import React from "react";
-import client from "../../helpers/contentful";
+import ProfilePic from "../ProfilePic";
 
 class Card extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Card extends React.Component {
   render() {
     return (
       <div className="card">
-        <div className="">Image Container</div>
+        <ProfilePic />
         <div className="">Bio section</div>
         <div className="">Links</div>
         <div className="">Social Links</div>
