@@ -1,4 +1,5 @@
 import React from "react";
+import contentful from "contentful";
 
 class Card extends React.Component {
   constructor(props) {
