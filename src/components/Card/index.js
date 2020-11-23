@@ -1,5 +1,5 @@
 import React from "react";
-import contentful from "contentful";
+import client from "../../helpers/contentful";
 
 class Card extends React.Component {
   constructor(props) {
