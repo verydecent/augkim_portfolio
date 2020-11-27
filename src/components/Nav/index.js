@@ -1,6 +1,12 @@
 import React from "react";
 import logo from "../../images/logo.jpeg";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faTwitter,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Nav = (Component) => (props) => {
   return (
@@ -14,18 +20,30 @@ const Nav = (Component) => (props) => {
         <h1>Aug Kim</h1>
         <div className="nav-list">
           <Link className="nav-link" to="">
-            Stuff
+            Link 1
           </Link>
           <Link className="nav-link" to="">
-            Stuff
+            Link 2
           </Link>
           <Link className="nav-link" to="">
-            Stuff
+            Link 3
           </Link>
         </div>
       </div>
       <Component {...props} />
-      <div className="footer">Footer</div>
+      <div className="footer">
+        <div className="social-media">
+          <div className="social-media-link">
+            <FontAwesomeIcon className="social-media-link" icon={faInstagram} />
+          </div>
+          <div className="social-media-link">
+            <FontAwesomeIcon className="social-media-link" icon={faTwitter} />
+          </div>
+          <div className="social-media-link">
+            <FontAwesomeIcon className="social-media-link" icon={faFacebook} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
