@@ -1,12 +1,12 @@
 import React from "react";
-import Card from "../Card";
+import Nav from "../Nav";
 
 const Home = () => {
-  return (
-    <div className="home">
-      <Card />
-    </div>
-  );
+  return <div className=""></div>;
 };
 
-export default Home;
+export default Nav(Home);
+
+// <div className="home">
+//   <Card />
+// </div>
