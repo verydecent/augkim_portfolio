@@ -43,6 +43,8 @@ const Nav = (Component) => (props) => {
             <FontAwesomeIcon className="social-media-link" icon={faFacebook} />
           </div>
         </div>
+        <div className="email">Contact: augallkim@gmail.com</div>
+        <div className="rights">© All rights reserved</div>
       </div>
     </div>
   );
