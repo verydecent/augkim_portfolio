@@ -28,6 +28,9 @@ const Nav = (Component) => (props) => {
           <Link className="nav-link" to="">
             Link 3
           </Link>
+          <Link className="nav-link" to="">
+            Link 4
+          </Link>
         </div>
       </div>
       <Component {...props} />
