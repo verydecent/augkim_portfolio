@@ -37,7 +37,6 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: "Roboto", sans-serif;
-  background-image: linear-gradient(to bottom, #dd31c6, #1f06d5);
 }
 
 /* A elements that don't have a class get default styles */
