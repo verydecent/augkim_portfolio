@@ -31,7 +31,7 @@ class Home extends React.Component {
             <p className="type">{aboutMe}</p>
           </div>
           <div className="links">
-            EMAIL
+            Email and Social Media will go here
           </div>
         </div>
         <div id="bottom">
