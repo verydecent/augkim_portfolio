@@ -6,19 +6,41 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter, Link } from "react-router-dom";
+import client from "./helpers/contentful";
 
 library.add(faInstagram, faBars);
 
 class App extends React.Component {
   state = {
-    isMenuOpen: false
+    isMenuOpen: false,
+    navLinks: []
+  }
+
+  componentDidMount() {
+    client.getEntries({
+      'content_type': "gallery"
+    })
+    .then(data => {
+      console.log(data);
+      this.setState(prevState => ({ ...prevState, navLinks: data.items }));
+    })
+    .catch(err => console.log(err));
   }
   render() {
+    const { isMenuOpen, navLinks } = this.state;
+    const NavLinks = navLinks && navLinks.map((link, i) =>
+      <Link
+        key={i}
+        to={link.fields.title.replace(/\s+/g, '-').toLowerCase()}>
+          {link.fields.title}
+      </Link>
+    );
+
     return (
       <div className="App">
         <BrowserRouter>
         <FontAwesomeIcon
-          onClick={() => this.setState({ isMenuOpen: !this.state.isMenuOpen})}
+          onClick={() => this.setState({ isMenuOpen: !isMenuOpen})}
           icon={faBars}
           style={{
             fontSize: "24px",
@@ -35,7 +57,7 @@ class App extends React.Component {
             className="shadow"
             onClick={() => this.setState({ isMenuOpen: false })}
             style={{
-              display: this.state.isMenuOpen ? "block" : "none",
+              display: isMenuOpen ? "block" : "none",
               opacity: 0.65,
               backgroundColor: "#000",
               width: "100%",
@@ -47,7 +69,7 @@ class App extends React.Component {
           />
           <div
             style={{
-              display: this.state.isMenuOpen ? "block" : "none",
+              display: isMenuOpen ? "block" : "none",
               width: 260,
               zIndex: 2,
               background: "#f0f0f0",
@@ -57,12 +79,16 @@ class App extends React.Component {
             }}>
             <div
             style={{
+              fontSize: "1.6rem",
               paddingTop: "72px",
               marginRight: "2%",
-              marginLeft: "30px"
+              marginLeft: "30px",
+              display: "flex",
+              flexDirection: "column"
             }}
             >
-              <Link to="/">Home</Link> 
+              <Link to="/">Home</Link>
+              {NavLinks}
             </div>
           </div>
         </div>
