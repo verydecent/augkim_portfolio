@@ -5,7 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import client from "./helpers/contentful";
 
 library.add(faInstagram, faBars);
@@ -21,34 +21,37 @@ class App extends React.Component {
       'content_type': "gallery"
     })
     .then(data => {
-      console.log(data);
       this.setState(prevState => ({ ...prevState, navLinks: data.items }));
     })
     .catch(err => console.log(err));
   }
   render() {
     const { isMenuOpen, navLinks } = this.state;
-    const NavLinks = navLinks && navLinks.map((link, i) =>
-      <Link
-        key={i}
-        to={link.fields.title.replace(/\s+/g, '-').toLowerCase()}>
-          {link.fields.title}
-      </Link>
+    const NavLinks = navLinks && navLinks.map((link, i) => {
+      return (
+        <Link
+          className="nav-link"
+          key={i}
+          to={link.fields.title.replace(/\s+/g, '-').toLowerCase()}
+        >
+            {link.fields.title}
+        </Link>
+      )}
     );
 
     return (
       <div className="App">
-        <BrowserRouter>
         <FontAwesomeIcon
           onClick={() => this.setState({ isMenuOpen: !isMenuOpen})}
           icon={faBars}
           style={{
-            fontSize: "24px",
+            fontSize: "28px",
             position: "absolute",
             right: "2%",
             top: "12px",
             zIndex: 3,
-            cursor: "pointer"
+            cursor: "pointer",
+            color: `${this.props.match.params.id === "" ? "#000" : "#7063c0"}`
           }}
         />
         {/* Sidebar Menu */}
@@ -87,15 +90,21 @@ class App extends React.Component {
               flexDirection: "column"
             }}
             >
-              <Link to="/">Home</Link>
+              <Link
+                className="home-link"
+                to="/"
+              >
+                Home
+              </Link>
               {NavLinks}
             </div>
           </div>
         </div>
-        <Routes />
-      </BrowserRouter>
+        <Routes data={navLinks} />
+        <div className="footer">All work shown is copyright © 2020 August Kimbrell</div>
     </div>
-    )}
+    )
+  }
 }
 
-export default App
+export default withRouter(App);

@@ -4,7 +4,7 @@ import client from "../../helpers/contentful";
 class Home extends React.Component {
   state = {
     name: "",
-    bio: "",
+    aboutMe: "",
     images: []
   };
   componentDidMount() {
@@ -13,7 +13,7 @@ class Home extends React.Component {
       .then((entry) => {
         this.setState({
           name: entry.fields.name,
-          bio: entry.fields.bio,
+          aboutMe: entry.fields.aboutMe,
           images: entry.fields.images
         });
       })
@@ -21,14 +21,14 @@ class Home extends React.Component {
   }
 
   render() {
-    const { name, bio, images } = this.state;
+    const { name, aboutMe, images } = this.state;
 
     return (
       <div className="home">
         <div id="top">
           <div className="top-content">
-            <p className="type">{name}</p>
-            <p className="type">{bio}</p>
+            <p className="title">{name}</p>
+            <p className="type">{aboutMe}</p>
           </div>
           <div className="links">
             EMAIL
@@ -38,14 +38,17 @@ class Home extends React.Component {
           <div className="content-container">
             {images.map(image => {
                 return (
-                <div className="img-blocks">
                   <img
+                    style={{
+                      height: "auto",
+                      width: "100%",
+                  }}
                     src={image.fields.file.url}
                     alt={image.fields.file.fileName}
                   />
-                </div>
                 );
-              })}
+              })
+            }
           </div>
         </div>
       </div>

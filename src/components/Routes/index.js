@@ -1,11 +1,24 @@
 import React from "react";
+import {
+  Route,
+  Switch
+} from "react-router-dom";
 import Home from "../Home";
-import { Route, Switch } from "react-router-dom";
+import Gallery from "../Gallery";
 
-const Routes = () => {
+const Routes = props => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route
+        exact
+        path="/"
+        component={Home}
+      />
+      <Route
+        exact
+        path="/:id"
+        render={() => <Gallery data={props.data}/>}
+      />
     </Switch>
   );
 };
