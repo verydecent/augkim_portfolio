@@ -10,6 +10,7 @@ class Gallery extends React.Component {
             title: "",
             text: "",
             images: [],
+            isLoading: true
         }
     }
 
@@ -22,7 +23,8 @@ class Gallery extends React.Component {
                         this.setState({
                             title: entry.fields.title,
                             text: entry.fields.text,
-                            images: entry.fields.images
+                            images: entry.fields.images,
+                            isLoading: false
                         });
                     }
                 })
@@ -30,7 +32,7 @@ class Gallery extends React.Component {
             .catch(err => console.log(err));
     }
     render() {
-        const { title, text, images } = this.state;
+        const { title, text, images, isLoading } = this.state;
         const imageSet = images && images.map((src, i) => {
             return (
                 <img
@@ -56,9 +58,9 @@ class Gallery extends React.Component {
                         <p className="title">{title}</p>
                         <p className="type">{text}</p>
                     </div>
-                    {/* <div className="links">
-                        EMAIL
-                    </div> */}
+                    <div className="links">
+                        details
+                    </div>
                 </div>
                 <div id="bottom">
                     <div className="content-container">

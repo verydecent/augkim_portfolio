@@ -3,6 +3,10 @@
 a {
 }
 
+#colored {
+  color: #7063c0 !important;
+}
+
 img {
   margin: 0 0 1% 0;
 }

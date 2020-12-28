@@ -25,11 +25,18 @@ class App extends React.Component {
     })
     .catch(err => console.log(err));
   }
+
+  closeOnNav = () => {
+    console.log('close')
+    this.setState({ isMenuOpen: false });
+  }
+
   render() {
     const { isMenuOpen, navLinks } = this.state;
     const NavLinks = navLinks && navLinks.map((link, i) => {
       return (
         <Link
+          onClick={this.closeOnNav}
           className="nav-link"
           key={i}
           to={link.fields.title.replace(/\s+/g, '-').toLowerCase()}
@@ -38,10 +45,11 @@ class App extends React.Component {
         </Link>
       )}
     );
-
+    console.log(this.props)
     return (
       <div className="App">
         <FontAwesomeIcon
+          id={isMenuOpen ? "colored" : ""}
           onClick={() => this.setState({ isMenuOpen: !isMenuOpen})}
           icon={faBars}
           style={{
@@ -51,7 +59,7 @@ class App extends React.Component {
             top: "12px",
             zIndex: 3,
             cursor: "pointer",
-            color: `${this.props.match.params.id === "" ? "#000" : "#7063c0"}`
+            color: `${this.props.location.pathname !== "/" ? "#fff" : "#7063c0"}`
           }}
         />
         {/* Sidebar Menu */}
@@ -91,6 +99,7 @@ class App extends React.Component {
             }}
             >
               <Link
+                onClick={this.closeOnNav}
                 className="home-link"
                 to="/"
               >
