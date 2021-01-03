@@ -19,7 +19,8 @@ class Gallery extends React.Component {
             .getEntries("gallery")
             .then((entry) => {
                 entry.items.forEach(entry => {
-                    if (entry.fields.title.replace(/\s+/g, '-').toLowerCase() === this.props.match.params.id) {
+                    const removeSlash = this.props.location.pathname.substring(1);
+                    if (entry.fields.title.replace(/\s+/g, '-').toLowerCase() === removeSlash) {
                         this.setState({
                             title: entry.fields.title,
                             text: entry.fields.text,
@@ -31,11 +32,36 @@ class Gallery extends React.Component {
             })
             .catch(err => console.log(err));
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.location !== prevProps.location) {
+            console.log('upda')
+            client
+            .getEntries("gallery")
+                .then((entry) => {
+                    const updatedEntry = entry.items.filter(entry => {
+                        const removeSlash = this.props.location.pathname.substring(1);
+                        if (entry.fields.title.replace(/\s+/g, '-').toLowerCase() === removeSlash) {
+                            return entry;
+                        }
+                    });
+                    console.log(updatedEntry)
+                    this.setState({
+                        title: updatedEntry.fields.title,
+                        text: updatedEntry.fields.text,
+                        images: updatedEntry.fields.images,
+                        isLoading: false
+                    });
+                })
+                .catch(err => console.log(err));
+        }
+    }
     render() {
         const { title, text, images, isLoading } = this.state;
         const imageSet = images && images.map((src, i) => {
             return (
                 <img
+                    key={i}
                     style={{
                         height: "auto",
                         width: "100%",

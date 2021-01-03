@@ -1,11 +1,14 @@
 import React from "react";
 import client from "../../helpers/contentful";
+import ImageSet from "../ImageSet";
 
 class Home extends React.Component {
   state = {
     name: "",
     aboutMe: "",
-    images: []
+    left: [],
+    middle: [],
+    right: [],
   };
   componentDidMount() {
     client
@@ -14,14 +17,22 @@ class Home extends React.Component {
         this.setState({
           name: entry.fields.name,
           aboutMe: entry.fields.aboutMe,
-          images: entry.fields.images
+          left: entry.fields.left,
+          middle: entry.fields.middle,
+          right: entry.fields.right,
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
-    const { name, aboutMe, images } = this.state;
+    const {
+      name,
+      aboutMe,
+      left,
+      middle,
+      right,
+    } = this.state;
 
     return (
       <div className="home">
@@ -36,24 +47,76 @@ class Home extends React.Component {
         </div>
         <div id="bottom">
           <div className="content-container">
-            {images.map(image => {
-                return (
-                  <img
-                    style={{
-                      height: "auto",
-                      width: "100%",
-                  }}
-                    src={image.fields.file.url}
-                    alt={image.fields.file.fileName}
-                  />
-                );
-              })
-            }
+            <div className="home-img-container">
+              <div className="left">
+                {left &&
+                  left.map((image, i) => {
+                    return (
+                      <img
+                        key={i}
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                        }}
+                        src={
+                          image.fields.file.url
+                        }
+                        alt={
+                          image.fields.file
+                            .fileName
+                        }
+                      />
+                    );
+                  })}
+              </div>
+              <div className="middle">
+                {middle &&
+                  middle.map((image, i) => {
+                    return (
+                      <img
+                        key={i}
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                        }}
+                        src={
+                          image.fields.file.url
+                        }
+                        alt={
+                          image.fields.file
+                            .fileName
+                        }
+                      />
+                    );
+                  })}
+              </div>
+              <div className="right">
+                {right &&
+                  right.map((image, i) => {
+                    return (
+                      <img
+                        key={i}
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                        }}
+                        src={
+                          image.fields.file.url
+                        }
+                        alt={
+                          image.fields.file
+                            .fileName
+                        }
+                      />
+                    );
+                  })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
-};
+}
 
 export default Home;
