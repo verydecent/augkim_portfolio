@@ -1,5 +1,6 @@
 import React from "react";
 import client from "../../helpers/contentful";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Home extends React.Component {
   state = {
@@ -41,8 +42,43 @@ class Home extends React.Component {
             <p className="type">{aboutMe}</p>
           </div>
           <div className="top-content">
-            <div className="links">
-              Email and Social Media will go here
+            <div
+              className="links"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                // justifyContent: "space-between",
+              }}
+            >
+              <a href="">
+                <FontAwesomeIcon
+                  style={{
+                    color: "#999",
+                    fontSize: 28,
+                  }}
+                  icon={["fab", "instagram"]}
+                />
+              </a>
+              <a href="">
+                <FontAwesomeIcon
+                  style={{
+                    color: "#999",
+                    fontSize: 28,
+                    marginLeft: 28,
+                  }}
+                  icon={["fab", "twitter"]}
+                />
+              </a>
+              <span
+                style={{
+                  color: "#999",
+                  fontSize: 24,
+                  marginLeft: 28,
+                  paddingBottom: 8,
+                }}
+              >
+                augkim@gmail.com
+              </span>
             </div>
           </div>
         </div>

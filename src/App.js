@@ -2,7 +2,11 @@ import React from "react";
 import "./App.css";
 import Routes from "./components/Routes";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import {
+  faInstagram,
+  faTwitter,
+  faTwitterSquare,
+} from "@fortawesome/free-brands-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,7 +15,12 @@ import {
 } from "react-router-dom";
 import client from "./helpers/contentful";
 
-library.add(faInstagram, faBars);
+library.add(
+  faInstagram,
+  faTwitter,
+  faTwitterSquare,
+  faBars
+);
 
 class App extends React.Component {
   state = {
