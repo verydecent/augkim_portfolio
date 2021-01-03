@@ -64,7 +64,7 @@ class Home extends React.Component {
                   style={{
                     color: "#999",
                     fontSize: 28,
-                    marginLeft: 28,
+                    marginLeft: 36,
                   }}
                   icon={["fab", "twitter"]}
                 />
@@ -75,6 +75,8 @@ class Home extends React.Component {
                   fontSize: 24,
                   marginLeft: 28,
                   paddingBottom: 8,
+                  marginLeft: "auto",
+                  marginRight: 50,
                 }}
               >
                 augkim@gmail.com
