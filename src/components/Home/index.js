@@ -1,6 +1,5 @@
 import React from "react";
 import client from "../../helpers/contentful";
-import ImageSet from "../ImageSet";
 
 class Home extends React.Component {
   state = {
@@ -41,8 +40,10 @@ class Home extends React.Component {
             <p className="title">{name}</p>
             <p className="type">{aboutMe}</p>
           </div>
-          <div className="links">
-            Email and Social Media will go here
+          <div className="top-content">
+            <div className="links">
+              Email and Social Media will go here
+            </div>
           </div>
         </div>
         <div id="bottom">

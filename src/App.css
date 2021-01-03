@@ -133,3 +133,13 @@ img {
   font-size: 14px;
   font-weight: 300;
 }
+
+@media all and (max-width: 768px) {
+  .home-img-container {
+    flex-direction: column;
+  }
+
+  .left {
+    flex: 1;
+  }
+}

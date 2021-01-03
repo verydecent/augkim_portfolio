@@ -17,6 +17,7 @@ class App extends React.Component {
   state = {
     isMenuOpen: false,
     navLinks: [],
+    isLoading: true,
   };
 
   componentDidMount() {
@@ -28,18 +29,21 @@ class App extends React.Component {
         this.setState((prevState) => ({
           ...prevState,
           navLinks: data.items,
+          isLoading: false,
         }));
       })
       .catch((err) => console.log(err));
   }
 
-  closeOnNav = () => {
-    console.log("close");
+  closeOnNav = () =>
     this.setState({ isMenuOpen: false });
-  };
 
   render() {
-    const { isMenuOpen, navLinks } = this.state;
+    const {
+      isMenuOpen,
+      navLinks,
+      isLoading,
+    } = this.state;
     const NavLinks =
       navLinks &&
       navLinks.map((link, i) => {
@@ -132,7 +136,10 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <Routes data={navLinks} />
+        <Routes
+          data={navLinks}
+          isLoading={isLoading}
+        />
         <div className="footer">
           All work shown is copyright © 2020
           August Kimbrell
