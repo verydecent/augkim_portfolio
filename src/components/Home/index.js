@@ -1,6 +1,8 @@
 import React from "react";
 import client from "../../helpers/contentful";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter, Link } from "react-router-dom";
+import artstation from "./artstation.webp";
 
 class Home extends React.Component {
   state = {
@@ -21,11 +23,13 @@ class Home extends React.Component {
           middle: entry.fields.middle,
           right: entry.fields.right,
         });
+        console.log(entry)
       })
       .catch((err) => console.log(err));
   }
 
   render() {
+    console.log(this.props);
     const {
       name,
       aboutMe,
@@ -50,7 +54,7 @@ class Home extends React.Component {
                 // justifyContent: "space-between",
               }}
             >
-              <a href="">
+              <a href="https://instagram.com/augkim">
                 <FontAwesomeIcon
                   style={{
                     color: "#999",
@@ -59,27 +63,53 @@ class Home extends React.Component {
                   icon={["fab", "instagram"]}
                 />
               </a>
-              <a href="">
-                <FontAwesomeIcon
+                    <a
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: 28,
+                      }}
+                      href="https://www.artstation.com/augustkimbrell7"
+                    >
+                      <img
+                        src={artstation}
+                        alt="artstation"
+                        style={{
+                          color: 'red',
+                          width: 30,
+                          marginBottom: 0
+                        }}
+                      />
+                    </a>
+              <a
+                style={{
+                  textDecoration: "none"
+                }}
+                href="fineartamerica.com/profiles/aug-kim?tab=artwork"
+              >
+                <span
                   style={{
                     color: "#999",
-                    fontSize: 28,
-                    marginLeft: 36,
+                    fontSize: 20,
+                    marginLeft: 28,
+                    paddingBottom: 8,
+                    marginRight: 50,
+                    textDecoration: "none"
                   }}
-                  icon={["fab", "twitter"]}
-                />
+                >
+                  Posters 
+                </span>
               </a>
               <span
                 style={{
                   color: "#999",
-                  fontSize: 24,
+                  fontSize: 20,
                   marginLeft: 28,
                   paddingBottom: 8,
                   marginLeft: "auto",
                   marginRight: 50,
                 }}
               >
-                augkim@gmail.com
+                augallkim@gmail.com
               </span>
             </div>
           </div>
@@ -90,66 +120,75 @@ class Home extends React.Component {
               <div className="left">
                 {left &&
                   left.map((image, i) => {
+                    console.log('left',image)
                     return (
-                      <img
-                        key={i}
-                        style={{
-                          height: "auto",
-                          width: "100%",
-                        }}
-                        src={
-                          image.fields.file.url
-                        }
-                        alt={
-                          image.fields.file
+                      <Link to={`${image.fields.title}`}>
+                        <img
+                          key={i}
+                          style={{
+                            height: "auto",
+                            width: "100%",
+                          }}
+                          src={
+                            image.fields.file.url
+                          }
+                          alt={
+                            image.fields.file
                             .fileName
-                        }
-                      />
+                          }
+                        />
+                      </Link>
                     );
                   })}
               </div>
               <div className="middle">
                 {middle &&
                   middle.map((image, i) => {
+                    console.log('middle',image)
+
                     return (
-                      <img
-                        key={i}
-                        style={{
-                          height: "auto",
-                          width: "100%",
-                        }}
-                        src={
-                          image.fields.file.url
-                        }
-                        alt={
-                          image.fields.file
-                            .fileName
-                        }
-                      />
+                      <Link to={`${image.fields.title}`}>
+                        <img
+                          key={i}
+                          style={{
+                            height: "auto",
+                            width: "100%",
+                          }}
+                          src={
+                            image.fields.file.url
+                          }
+                          alt={
+                            image.fields.file
+                              .fileName
+                          }
+                        />
+                      </Link>
                     );
                   })}
               </div>
-              <div className="right">
+              {/* <div className="right">
                 {right &&
                   right.map((image, i) => {
                     return (
-                      <img
-                        key={i}
-                        style={{
-                          height: "auto",
-                          width: "100%",
-                        }}
-                        src={
-                          image.fields.file.url
-                        }
-                        alt={
-                          image.fields.file
-                            .fileName
-                        }
-                      />
+                      <Link to={`${image.fields.title}`}>
+                        <img
+                          key={i}
+                          style={{
+                            height: "auto",
+                            width: "100%",
+                          }}
+                          src={
+                            image.fields.file.url
+                          }
+                          alt={
+                            image.fields.file
+                              .fileName
+                          }
+                        />
+                      </Link>
                     );
                   })}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -158,4 +197,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);
