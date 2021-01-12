@@ -122,7 +122,8 @@ class Home extends React.Component {
                   left.map((image, i) => {
                     console.log('left',image)
                     return (
-                      <Link to={`${image.fields.title}`}>
+                      <Link to={`${image.fields.title.replace(/\s+/g, "-")
+                      .toLowerCase()}`}>
                         <img
                           key={i}
                           style={{
@@ -144,10 +145,9 @@ class Home extends React.Component {
               <div className="middle">
                 {middle &&
                   middle.map((image, i) => {
-                    console.log('middle',image)
-
                     return (
-                      <Link to={`${image.fields.title}`}>
+                      <Link to={`${image.fields.title.replace(/\s+/g, "-")
+                      .toLowerCase()}`}>
                         <img
                           key={i}
                           style={{
