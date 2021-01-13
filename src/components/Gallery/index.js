@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import "./styles.css";
 
@@ -46,26 +46,7 @@ class Gallery extends React.Component {
               1
             )
         );
-
-      const { title, text, images } =
-        gallery[0].fields && gallery[0].fields;
-
-      const imageSet =
-        images &&
-        images.map((src, i) => {
-          return (
-            <img
-              key={i}
-              style={{
-                height: "auto",
-                width: "100%",
-              }}
-              src={src.fields.file.url}
-              alt={src.fields.title}
-            />
-          );
-        });
-
+        if (gallery[0].fields) {
       return (
         <div className="gallery">
           <div
@@ -77,10 +58,10 @@ class Gallery extends React.Component {
           >
             <div className="top-content">
               <p className="title">
-                {title && title}
+                {gallery[0].fields.title && gallery[0].fields.title}
               </p>
               <p className="type">
-                {text && text}
+                {gallery[0].fields.text && gallery[0].fields.text}
               </p>
             </div>
             <div className="links">details</div>
@@ -88,13 +69,30 @@ class Gallery extends React.Component {
           <div id="bottom">
             <div className="content-container">
               <div className="portfolio-content">
-                {imageSet}
+                {gallery[0].fields.images &&
+      gallery[0].fields.images.map((src, i) => {
+          return (
+            <img
+              key={i}
+              style={{
+                height: "auto",
+                width: "100%",
+              }}
+              src={src.fields.file.url}
+              alt={src.fields.title}
+            />
+          );
+        })}
               </div>
             </div>
           </div>
         </div>
       );
     }
+    else {
+      return <Redirect to="/" />;
+    }
+  }
   }
 }
 
