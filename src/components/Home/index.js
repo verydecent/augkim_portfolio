@@ -16,20 +16,19 @@ class Home extends React.Component {
     client
       .getEntry("4JGO8utYkyDOkv2DnJBIB9")
       .then((entry) => {
+        console.log('then?', entry)
         this.setState({
           name: entry.fields.name,
           aboutMe: entry.fields.aboutMe,
-          left: entry.fields.left,
-          middle: entry.fields.middle,
-          right: entry.fields.right,
+          left: entry.fields.left ? entry.fields.left : null,
+          middle: entry.fields.middle ? entry.fields.middle : [],
         });
-        console.log(entry)
+        console.log('entry', entry)
       })
       .catch((err) => console.log(err));
   }
-
   render() {
-    console.log(this.props);
+    console.log(this.state.left)
     const {
       name,
       aboutMe,
@@ -105,7 +104,6 @@ class Home extends React.Component {
                   fontSize: 20,
                   marginLeft: 28,
                   paddingBottom: 8,
-                  marginLeft: "auto",
                   marginRight: 50,
                 }}
               >
@@ -120,50 +118,89 @@ class Home extends React.Component {
               <div className="left">
                 {left &&
                   left.map((image, i) => {
-                    console.log('left',image)
-                    return (
-                      <Link to={`${image.fields.title.replace(/\s+/g, "-")
-                      .toLowerCase()}`}>
+                    if (image.fields.title) {
+                      return (
+                        <Link to={`${image.fields.title && image.fields.title.replace(/\s+/g, "-")
+                        .toLowerCase()}`}>
+                          <img
+                            key={i}
+                            style={{
+                              height: "auto",
+                              width: "100%",
+                            }}
+                            src={
+                              image.fields.file.url
+                            }
+                            alt={
+                              image.fields.file
+                              .fileName
+                            }
+                          />
+                        </Link>
+                      );
+                    }
+                    else {
+                      return (
                         <img
-                          key={i}
-                          style={{
-                            height: "auto",
-                            width: "100%",
-                          }}
-                          src={
-                            image.fields.file.url
-                          }
-                          alt={
-                            image.fields.file
-                            .fileName
-                          }
-                        />
-                      </Link>
-                    );
+                        key={i}
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                        }}
+                        src={
+                          image.fields.file.url
+                        }
+                        alt={
+                          image.fields.file
+                          .fileName
+                        }
+                      />
+                      )
+                    }
                   })}
               </div>
               <div className="middle">
                 {middle &&
                   middle.map((image, i) => {
-                    return (
-                      <Link to={`${image.fields.title.replace(/\s+/g, "-")
-                      .toLowerCase()}`}>
-                        <img
-                          key={i}
-                          style={{
-                            height: "auto",
-                            width: "100%",
-                          }}
-                          src={
-                            image.fields.file.url
-                          }
-                          alt={
-                            image.fields.file
+                    if (image.fields.title) {
+                      return (
+                        <Link to={`${image.fields.title && image.fields.title.replace(/\s+/g, "-")
+                        .toLowerCase()}`}>
+                          <img
+                            key={i}
+                            style={{
+                              height: "auto",
+                              width: "100%",
+                            }}
+                            src={
+                              image.fields.file.url
+                            }
+                            alt={
+                              image.fields.file
                               .fileName
-                          }
-                        />
-                      </Link>
-                    );
+                            }
+                          />
+                        </Link>
+                      );
+                    }
+                    else {
+                      return (
+                        <img
+                        key={i}
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                        }}
+                        src={
+                          image.fields.file.url
+                        }
+                        alt={
+                          image.fields.file
+                          .fileName
+                        }
+                      />
+                      )
+                    }
                   })}
               </div>
               {/* <div className="right">
