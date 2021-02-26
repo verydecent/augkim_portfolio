@@ -59,6 +59,7 @@ class Home extends React.Component {
                     color: "#999",
                     fontSize: 28,
                   }}
+                  target="_blank"
                   icon={["fab", "instagram"]}
                 />
               </a>
@@ -67,6 +68,7 @@ class Home extends React.Component {
                         textDecoration: "none",
                         marginLeft: 28,
                       }}
+                      target="_blank"
                       href="https://www.artstation.com/augustkimbrell7"
                     >
                       <img
@@ -83,6 +85,7 @@ class Home extends React.Component {
                 style={{
                   textDecoration: "none"
                 }}
+                target="_blank"
                 href="fineartamerica.com/profiles/aug-kim?tab=artwork"
               >
                 <span
