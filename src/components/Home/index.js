@@ -86,7 +86,7 @@ class Home extends React.Component {
                   textDecoration: "none"
                 }}
                 target="_blank"
-                href="fineartamerica.com/profiles/aug-kim?tab=artwork"
+                href="https://www.fineartamerica.com/profiles/aug-kim?tab=artwork"
               >
                 <span
                   style={{
