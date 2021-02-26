@@ -11,6 +11,19 @@ img {
   margin-bottom: 12px;
 }
 
+#home-logo-button {
+  position: absolute;
+  max-width: 90px;
+  height: auto;
+  left: 15px;
+  top: 15px;
+}
+
+#home-logo-button img {
+  width: 100%;
+  height: 100%;
+}
+
 .home-link {
   text-decoration: none;
   margin-bottom: 1.6em;

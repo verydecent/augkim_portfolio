@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   Link,
   withRouter,
@@ -29,25 +30,28 @@ class App extends React.Component {
     isLoading: true,
   };
 
+  
+  
   componentDidMount() {
     client
-      .getEntries({
-        content_type: "gallery",
-      })
-      .then((data) => {
-        this.setState((prevState) => ({
-          ...prevState,
-          navLinks: data.items,
-          isLoading: false,
-        }));
-      })
-      .catch((err) => console.log(err));
+    .getEntries({
+      content_type: "gallery",
+    })
+    .then((data) => {
+      this.setState((prevState) => ({
+        ...prevState,
+        navLinks: data.items,
+        isLoading: false,
+      }));
+    })
+    .catch((err) => console.log(err));
   }
-
+  
   closeOnNav = () =>
-    this.setState({ isMenuOpen: false });
-
+  this.setState({ isMenuOpen: false });
+  
   render() {
+    console.log(this.props)
     const {
       isMenuOpen,
       navLinks,
@@ -71,6 +75,16 @@ class App extends React.Component {
       });
     return (
       <div className="App">
+        <Link to='/'>
+          <div id='home-logo-button'>
+            <img
+              alt='logo home'
+              src={this.props.location.pathname === '/'
+                ? 'https://images.ctfassets.net/4rg46twumvz3/5CY28Zvb5ftnNMOCFKbhB/6dae53bb837a703b6ebe910bbe0ecb14/Skull_z2_copy_2-Recovered.jpg?h=250'
+                : 'https://images.ctfassets.net/4rg46twumvz3/3InHySdolAUMpt1j6t7v8i/46b9497438a33fc9b2aef6661f9dca6a/Skull_z2_copy_2-Recovered2.jpg?h=250'}
+              />
+          </div>
+        </Link>
         <FontAwesomeIcon
           id={isMenuOpen ? "colored" : ""}
           onClick={() =>
